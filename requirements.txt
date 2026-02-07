@@ -1,0 +1,7 @@
+Django
+django_extensions
+django-ninja
+requests
+regex
+#git+ssh://git@github.com/pyvestaboard/pyvestaboard.git/
+pyvestaboard @ git+ssh://git@github.com/pyvestaboard/pyvestaboard.git@main

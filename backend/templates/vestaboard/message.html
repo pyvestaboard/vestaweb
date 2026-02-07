@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}  
+  {% for row in message %}
+  <div class="vestaboard-row">
+    {% for i in row %}  
+      {% if i == '🟥' %}
+      <div class="flipper"><div class="colored-tile red"></div></div>
+      {% elif i == '🟧' %}
+      <div class="flipper"><div class="colored-tile orange"></div></div>
+      {% elif i == '🟨' %}
+      <div class="flipper"><div class="colored-tile yellow"></div></div>
+      {% elif i == '🟩' %}
+      <div class="flipper"><div class="colored-tile green"></div></div>
+      {% elif i == '🟦' %}
+      <div class="flipper"><div class="colored-tile blue"></div></div>
+      {% elif i == '🟪' %}
+      <div class="flipper"><div class="colored-tile violet"></div></div>
+      {% elif i == '⬜️' %}
+      <div class="flipper"><div class="colored-tile white"></div></div>
+      {% else %}
+      <div class="flipper">{{ i }}</div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+  <div class="vestaboard-label">VestaBoard</div>
+{% endblock %}

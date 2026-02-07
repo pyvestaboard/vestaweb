@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <button hx-get="/htmx/message" hx-swap="innerHTML" hx-target="#vestaboard">Get Message</button>
+  <div class="main-wrap">
+    <div id="vestaboard" hx-get="/htmx/message" hx-trigger="load delay:1s">
+      <div class="vestaboard-row">
+        {% for i in '     be creative      '|make_list %}
+        <div class="flipper">{{ i }}</div>
+        {% endfor %}
+      </div>
+      <div class="vestaboard-row">
+        {% for i in '   live a fun life    '|make_list %}
+        <div class="flipper">{{ i }}</div>
+        {% endfor %}
+      </div>
+      <div class="vestaboard-row">
+        {% for i in ' don\'t be an asshole  '|make_list %}
+        <div class="flipper">{{ i }}</div>
+        {% endfor %}
+      </div>
+      <div class="vestaboard-row">
+        {% for i in 'abcdefghijklmnopqrstuv'|make_list %}
+        <div class="flipper">{{ i }}</div>
+        {% endfor %}
+      </div>
+      <div class="vestaboard-row">
+        {% for i in 'wxyz 0123456789 !@#$()'|make_list %}
+        <div class="flipper">{{ i }}</div>
+        {% endfor %}
+      </div>
+      <div class="vestaboard-row">
+        {% for i in '-+&=;:\'"%,./?° '|make_list %}
+        <div class="flipper">{{ i }}</div>
+        {% endfor %}
+        <div class="flipper"><div class="colored-tile red"></div></div>
+        <div class="flipper"><div class="colored-tile orange"></div></div>
+        <div class="flipper"><div class="colored-tile yellow"></div></div>
+        <div class="flipper"><div class="colored-tile green"></div></div>
+        <div class="flipper"><div class="colored-tile blue"></div></div>
+        <div class="flipper"><div class="colored-tile violet"></div></div>
+        <div class="flipper"><div class="colored-tile white"></div></div>
+      </div>
+      <div class="vestaboard-label">VestaBoard</div>
+    </div>
+    <div class="flex flex-col gap-3">
+      <div id="message-container">
+        <div class="alignment-link corner-link" id="top-left-link" onclick="alignMessage('top-left')"></div>
+        <div class="alignment-link top-bottom-link" id="top-center-link" onclick="alignMessage('top-left')"></div>
+        <div class="alignment-link corner-link" id="top-right-link" onclick="alignMessage('top-right')"></div>
+        <div class="alignment-link side-link" id="center-left-link" onclick="alignMessage('center-left')"></div>
+        <div class="alignment-link side-link" id="center-right-link" onclick="alignMessage('center-left')"></div>
+        <div class="alignment-link corner-link" id="bottom-left-link" onclick="alignMessage('bottom-left')"></div>
+        <div class="alignment-link top-bottom-link" id="bottom-center-link" onclick="alignMessage('top-left')"></div>
+        <div class="alignment-link corner-link" id="bottom-right-link" onclick="alignMessage('bottom-right')"></div>
+        <div id="message" contenteditable="true"></div>
+      </div>
+      <div class="flex flex-row grow justify-between">
+        <button class="button">Preview Message</button>
+        <button class="button">Send Message</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function alignMessage(alignment) {
+      // debugger;
+      // console.log(document.getElementById('message'))
+      document.getElementById('message').style.alignContent = 'center';
+    }
+  </script>
+{% endblock %}
