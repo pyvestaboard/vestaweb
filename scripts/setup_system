@@ -1,0 +1,5 @@
+#!/bin/bash
+# Script to setup the server
+
+sudo apt update
+sudo apt install nginx net-tools
