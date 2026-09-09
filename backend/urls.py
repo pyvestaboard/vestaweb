@@ -29,6 +29,9 @@ api.add_router("/boards/", vestaboard_router)
 urlpatterns = [
     path("", views.index, name="index"),
     path("htmx/message", views.message, name="message"),
+    path("htmx/current_message", views.current_message, name="current_message"),
+    path("htmx/preview_message", views.preview_message, name="preview_message"),
+    path("htmx/send_message", views.send_message, name="send_message"),
     path("admin/", admin.site.urls),
     path("api/", api.urls),
 ]
