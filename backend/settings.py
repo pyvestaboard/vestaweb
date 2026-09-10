@@ -26,8 +26,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-h%)sx(&_m2-y#0t2*r4q&3a2)8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-hosts = os.environ.get("ALLOWED_HOSTS", "").split(",")
+hosts = os.getenv('ALLOWED_HOSTS', '').split(',')
 ALLOWED_HOSTS = [] if not any(hosts) else hosts
+# ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -122,3 +123,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.getenv('STATIC_ROOT', None)
