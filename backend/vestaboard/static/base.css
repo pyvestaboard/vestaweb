@@ -6,7 +6,10 @@ body {
 .main-wrap {
 	/* flex flex-col place-items-center gap-3" style="margin: 2.5rem 2.5rem 2.5rem 2.5rem;" */
 	display: flex;
-	flex-direction: row;
+	/* flex-direction: row; */
+	flex-direction: column;
+	justify-content: center;
+	flex-wrap: wrap;
 	place-items: center;
 	gap: 3rem;
 	margin: 2.5rem;
@@ -139,6 +142,7 @@ body {
 	resize: none;
 	font-size: 13px;
 	display: flex;
+	flex-direction: column;
 	/* align-items: center; */
 }
 
@@ -170,56 +174,71 @@ body {
 #top-left-link {
 	top: 0;
 	left: 0;
-	border-top: 2px dashed #878787;
-	border-left: 2px dashed #878787;
+	border-top: 2px dotted #878787;
+	border-left: 2px dotted #878787;
 	border-top-left-radius: 5px;
 }
 
 #top-center-link {
 	top: 0;
 	left: 145px;
-	border-top: 2px dashed #878787;
+	border-top: 2px dotted #878787;
 }
 
 #top-right-link {
 	top: 0;
 	right: 0;
-	border-right: 2px dashed #878787;
-	border-top: 2px dashed #878787;
+	border-right: 2px dotted #878787;
+	border-top: 2px dotted #878787;
 	border-top-right-radius: 5px;
 }
 
-#center-left-link {
+#middle-left-link {
 	top: 50px;
 	left: 0;
-	border-left: 2px dashed #878787;
+	border-left: 2px dotted #878787;
 }
 
-#center-right-link {
+#middle-center-link {
+	top: calc(50% - 10px);
+	left: calc(50% - 10px);
+	width: 20px;
+	height: 20px;
+	background-color: rgba(191, 191, 191, 0.08);
+	border: 2px dotted rgba(191, 191, 191, 0.33);
+	border-radius: 10px;
+}
+
+#middle-center-link:hover {
+	background-color: rgba(191, 191, 191, 0.5);
+	border: 2px dotted rgba(191, 191, 191, 0.8);
+}
+
+#middle-right-link {
 	top: 50px;
 	right: 0;
-	border-right: 2px dashed #878787;
+	border-right: 2px dotted #878787;
 }
 
 #bottom-left-link {
 	bottom: 0;
 	left: 0;
-	border-left: 2px dashed #878787;
-	border-bottom: 2px dashed #878787;
+	border-left: 2px dotted #878787;
+	border-bottom: 2px dotted #878787;
 	border-bottom-left-radius: 5px;
 }
 
 #bottom-center-link {
 	bottom: 0;
 	left: 145px;
-	border-bottom: 2px dashed #878787;
+	border-bottom: 2px dotted #878787;
 }
 
 #bottom-right-link {
 	bottom: 0;
 	right: 0;
-	border-right: 2px dashed #878787;
-	border-bottom: 2px dashed #878787;
+	border-right: 2px dotted #878787;
+	border-bottom: 2px dotted #878787;
 	border-bottom-right-radius: 5px;
 }
 

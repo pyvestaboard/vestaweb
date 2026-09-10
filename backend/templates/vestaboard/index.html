@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <button hx-get="/htmx/message" hx-swap="innerHTML" hx-target="#vestaboard">Get Message</button>
   <div class="main-wrap">
     <div id="vestaboard" hx-get="/htmx/message" hx-trigger="load delay:1s">
       <div class="vestaboard-row">
@@ -44,28 +43,56 @@
       <div class="vestaboard-label">VestaBoard</div>
     </div>
     <div class="flex flex-col gap-3">
-      <div id="message-container">
-        <div class="alignment-link corner-link" id="top-left-link" onclick="alignMessage('top-left')"></div>
-        <div class="alignment-link top-bottom-link" id="top-center-link" onclick="alignMessage('top-left')"></div>
-        <div class="alignment-link corner-link" id="top-right-link" onclick="alignMessage('top-right')"></div>
-        <div class="alignment-link side-link" id="center-left-link" onclick="alignMessage('center-left')"></div>
-        <div class="alignment-link side-link" id="center-right-link" onclick="alignMessage('center-left')"></div>
-        <div class="alignment-link corner-link" id="bottom-left-link" onclick="alignMessage('bottom-left')"></div>
-        <div class="alignment-link top-bottom-link" id="bottom-center-link" onclick="alignMessage('top-left')"></div>
-        <div class="alignment-link corner-link" id="bottom-right-link" onclick="alignMessage('bottom-right')"></div>
-        <div id="message" contenteditable="true"></div>
-      </div>
-      <div class="flex flex-row grow justify-between">
-        <button class="button">Preview Message</button>
-        <button class="button">Send Message</button>
-      </div>
+      <form id="message_form" hx-vals="javascript: message:htmx.find('#message').innerText">
+        <input type="hidden" name="horizontal-alignment" value="left"/>
+        <input type="hidden" name="vertical-alignment" value="top"/>
+      <!-- <form id="message_form"> -->
+        {% csrf_token %}
+        <div id="message-container">
+          <div class="alignment-link corner-link" id="top-left-link" onclick="alignMessage('top', 'left')"></div>
+          <div class="alignment-link top-bottom-link" id="top-center-link" onclick="alignMessage('top', 'center')"></div>
+          <div class="alignment-link corner-link" id="top-right-link" onclick="alignMessage('top', 'right')"></div>
+          <div class="alignment-link side-link" id="middle-left-link" onclick="alignMessage('middle', 'left')"></div>
+          <div class="alignment-link side-link" id="middle-center-link" onclick="alignMessage('middle', 'center')"></div>
+          <div class="alignment-link side-link" id="middle-right-link" onclick="alignMessage('middle', 'right')"></div>
+          <div class="alignment-link corner-link" id="bottom-left-link" onclick="alignMessage('bottom', 'left')"></div>
+          <div class="alignment-link top-bottom-link" id="bottom-center-link" onclick="alignMessage('bottom', 'center')"></div>
+          <div class="alignment-link corner-link" id="bottom-right-link" onclick="alignMessage('bottom', 'right')"></div>
+          <div
+            id="message"
+            form="message_form"
+            contenteditable="plaintext-only"
+            hx-post="/htmx/preview_message"
+            hx-trigger="keyup"
+            hx-swap="innerHTML"
+            hx-target="#vestaboard"
+          >
+          </div>
+        </div>
+        <div class="flex flex-row grow justify-between" style="margin-top: 1em;">
+          <button hx-get="/htmx/current_message" hx-swap="innerHTML" hx-target="#message">Get Message</button>
+          <button hx-post="/htmx/send_message" form="message_form" class="button" hx-swap="innerHTML" hx-target="#vestaboard">Send Message</button>
+        </div>
+      </form>
     </div>
   </div>
   <script>
-    function alignMessage(alignment) {
-      // debugger;
-      // console.log(document.getElementById('message'))
-      document.getElementById('message').style.alignContent = 'center';
+    function alignMessage(vertical_alignment, horizontal_alignment) {
+      h_alignment_ele = document.getElementsByName("horizontal-alignment")[0]
+      h_alignment_ele.value = horizontal_alignment;
+      v_alignment_ele = document.getElementsByName("vertical-alignment")[0]
+      v_alignment_ele.value = vertical_alignment;
+      
+      message_ele = document.getElementById('message')
+      message_ele.style.textAlign = horizontal_alignment;
+      justifyContentValue = 'start';
+      if (vertical_alignment == 'middle') {
+        justifyContentValue = 'center';
+      } else if (vertical_alignment == 'bottom') {
+        justifyContentValue = 'end';
+      }
+      message_ele.style.justifyContent = justifyContentValue
+      htmx.trigger("#message", "keyup");
     }
   </script>
 {% endblock %}
