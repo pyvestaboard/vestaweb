@@ -3,7 +3,6 @@ django_extensions
 django-ninja
 requests
 regex
-gunicorn
-pyvestaboard @ git+ssh://git@github.com/pyvestaboard/pyvestaboard.git/
-#pyvestaboard @ git+ssh://git@github.com/pyvestaboard/pyvestaboard.git@bugfixes
+uvicorn
+pyvestaboard @ git+ssh://git@github.com/pyvestaboard/pyvestaboard.git
 #pyvestaboard @ /Users/tjohnson/Programatica/Vestaboard/pyvestaboard
