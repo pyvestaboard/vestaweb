@@ -11,9 +11,7 @@ sudo /opt/certbot/bin/pip install certbot certbot-nginx
 sudo ln -s /opt/certbot/bin/certbot /usr/local/bin/certbot
 sudo /opt/certbot/bin/pip install certbot-dns-cloudflare
 
-
-certbot certonly \
+sudo certbot certonly \
   --dns-cloudflare \
   --dns-cloudflare-credentials /root/.certbot-secrets \
-  -d example.com \
-  -d www.example.com
+  -d vestaweb.app

@@ -1,7 +1,9 @@
 Django
+channels
 django_extensions
 django-ninja
 requests
 regex
 uvicorn
 pyvestaboard @ git+ssh://git@github.com/pyvestaboard/pyvestaboard.git
+#pyvestaboard @ /Users/tjohnson/Programatica/Vestaboard/pyvestaboard
