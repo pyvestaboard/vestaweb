@@ -4,6 +4,7 @@ from asgiref.sync import async_to_sync
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import authentication, permissions
 
 from pyvestaboard import VestaBoard as PyVestaBoard
 
@@ -26,7 +27,8 @@ async def update_channel(message, vertical_alignment, horizontal_alignment):
 		)
 
 class RelayMessageView(APIView):
-	serializer_class = RelayMessageSerializer
+	authentication_classes = [authentication.TokenAuthentication]
+	permission_classes = [permissions.IsAuthenticated]
 
 	def post(self, request):
 		serializer = RelayMessageSerializer(data=request.data)
