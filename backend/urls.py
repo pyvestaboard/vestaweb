@@ -15,16 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from ninja import NinjaAPI
+from rest_framework import routers
 
 from backend.vestaboard import views
-from backend.vestaboard.api import router as vestaboard_router
 
-
-api = NinjaAPI()
-api.add_router("/boards/", vestaboard_router)
+from backend.api_v1.views import RelayMessageView
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -33,5 +30,6 @@ urlpatterns = [
     path("htmx/preview_message", views.preview_message, name="preview_message"),
     path("htmx/send_message", views.send_message, name="send_message"),
     path("admin/", admin.site.urls),
-    path("api/", api.urls),
+    path("api/v1/", include("rest_framework.urls")),
+    path("api/v1/relay", RelayMessageView.as_view())
 ]

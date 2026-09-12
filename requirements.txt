@@ -1,7 +1,7 @@
 Django
 channels
 django_extensions
-django-ninja
+djangorestframework
 requests
 regex
 uvicorn
